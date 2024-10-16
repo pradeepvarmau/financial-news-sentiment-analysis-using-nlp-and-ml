@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Sentiment Analysis</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/"><i><b>FNSA</b></i></a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about.html">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1>Welcome to Sentiment Analysis</h1>
+        <form action="/predict" method="POST">
+            <div class="form-group">
+                <label for="text">Enter text for analysis:</label>
+                <textarea class="form-control" name="text" id="text" rows="3" placeholder="Type your text here..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Analyze Sentiment</button>
+        </form>
+        <div id="result" class="mt-4">
+            {% if result %}
+                <h3>Sentiment: {{ result }}</h3>
+            {% endif %}
+            {% if error %}
+                <h3>Error: {{ error }}</h3>
+            {% endif %}
+        </div>
+    </div>
+
+    <footer class="text-center mt-5">
+        <p>&copy; 2024 Sentiment Analysis. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
